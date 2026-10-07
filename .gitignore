@@ -1,0 +1,38 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local databases and uploaded material
+*.db
+*.sqlite
+*.sqlite3
+backend/data/
+uploads/
+backups/
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Local caches and editor files
+*.log
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

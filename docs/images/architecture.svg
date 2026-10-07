@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="760" viewBox="0 0 1280 760" role="img" aria-labelledby="title desc">
+  <title id="title">AI-Exam-Coach 系统关系图</title>
+  <desc id="desc">展示前端、FastAPI、后台材料处理、知识与考试证据、可信练习和学生学习状态之间的关系。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/>
+    </marker>
+    <style>
+      text{font-family:"Segoe UI","Microsoft YaHei",sans-serif;fill:#172033}
+      .title{font-size:30px;font-weight:700}.subtitle{font-size:15px;fill:#526078}
+      .label{font-size:18px;font-weight:700}.small{font-size:14px;fill:#526078}
+      .box{fill:#fff;stroke:#cbd5e1;stroke-width:2;rx:16}
+      .blue{fill:#eff6ff;stroke:#93c5fd}.violet{fill:#f5f3ff;stroke:#c4b5fd}
+      .green{fill:#ecfdf5;stroke:#86efac}.amber{fill:#fffbeb;stroke:#fcd34d}
+      .line{fill:none;stroke:#64748b;stroke-width:3;marker-end:url(#arrow)}
+      .lineBlue{fill:none;stroke:#2563eb;stroke-width:3;marker-end:url(#arrowBlue)}
+      .dashed{stroke-dasharray:8 7}
+    </style>
+  </defs>
+  <rect width="1280" height="760" fill="#f8fafc"/>
+  <text x="56" y="58" class="title">AI-Exam-Coach · 系统关系图</text>
+  <text x="56" y="88" class="subtitle">资料解析、考试证据、可信练习与学习状态如何连接</text>
+
+  <rect x="55" y="132" width="330" height="108" class="box blue"/>
+  <text x="82" y="171" class="label">学生端 · Next.js / React</text>
+  <text x="82" y="202" class="small">课程、材料、Session、答题与反馈</text>
+
+  <rect x="475" y="132" width="330" height="108" class="box violet"/>
+  <text x="502" y="171" class="label">API · FastAPI Router</text>
+  <text x="502" y="202" class="small">身份校验、请求契约、调用服务层</text>
+
+  <rect x="895" y="132" width="330" height="108" class="box"/>
+  <text x="922" y="171" class="label">持久化 · SQLAlchemy</text>
+  <text x="922" y="202" class="small">Course、Material、Question、Session…</text>
+  <path d="M385 186 H465" class="lineBlue"/>
+  <path d="M805 186 H885" class="line"/>
+
+  <rect x="55" y="320" width="330" height="128" class="box amber"/>
+  <text x="82" y="360" class="label">上传资料</text>
+  <text x="82" y="391" class="small">创建 Material → 后台有界线程池</text>
+  <text x="82" y="418" class="small">PDF / DOCX / 文本解析；部分扫描件 OCR</text>
+
+  <rect x="475" y="320" width="330" height="128" class="box blue"/>
+  <text x="502" y="360" class="label">课程知识与来源证据</text>
+  <text x="502" y="391" class="small">extracted_text → 候选知识点</text>
+  <text x="502" y="418" class="small">StudyUnit ↔ Evidence / 来源摘录</text>
+
+  <rect x="895" y="320" width="330" height="128" class="box green"/>
+  <text x="922" y="360" class="label">考试题与映射</text>
+  <text x="922" y="391" class="small">题目切分、上下文与来源保留</text>
+  <text x="922" y="418" class="small">MATCHED / AMBIGUOUS / UNMATCHED</text>
+
+  <path d="M220 240 V310" class="line"/>
+  <path d="M385 384 H465" class="line"/>
+  <path d="M805 384 H885" class="line"/>
+
+  <rect x="255" y="535" width="330" height="128" class="box violet"/>
+  <text x="282" y="575" class="label">Question Trust Gate</text>
+  <text x="282" y="606" class="small">检查题目结构、答案与映射资格</text>
+  <text x="282" y="633" class="small">未通过 → 不进入正式练习</text>
+
+  <rect x="695" y="535" width="330" height="128" class="box blue"/>
+  <text x="722" y="575" class="label">学习 Session 与反馈</text>
+  <text x="722" y="606" class="small">取可信题 → 答题 → 判分</text>
+  <text x="722" y="633" class="small">保存 PracticeRecord 与知识点状态</text>
+
+  <path d="M1060 448 C1060 495 420 480 420 525" class="line"/>
+  <path d="M585 599 H685" class="lineBlue"/>
+  <path d="M860 535 C860 488 640 492 640 458" class="line dashed"/>
+  <text x="1047" y="507" class="small">可靠映射题进入练习候选</text>
+  <text x="492" y="700" class="small">可选 Provider（含 DeepSeek）仅在实际接入的服务路径中调用；普通教材上传当前不会自动生成完整 Canonical Graph。</text>
+</svg>

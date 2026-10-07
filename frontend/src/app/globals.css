@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply text-slate-900;
+  }
+  body {
+    @apply bg-bg text-slate-900 antialiased;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply rounded-2xl bg-primary px-5 py-3 text-center font-bold text-white shadow-md transition active:translate-y-0.5 active:bg-primary-dark;
+  }
+  .btn-secondary {
+    @apply rounded-2xl bg-secondary px-5 py-3 text-center font-bold text-white shadow-md transition active:translate-y-0.5 active:brightness-90;
+  }
+  .btn-outline {
+    @apply rounded-2xl border-2 border-slate-300 px-5 py-3 text-center font-bold text-slate-500 transition hover:border-slate-400;
+  }
+  .btn-danger {
+    @apply rounded-2xl bg-danger px-5 py-3 text-center font-bold text-white shadow-md transition active:translate-y-0.5;
+  }
+  .card {
+    @apply rounded-2xl bg-surface p-5 shadow-sm;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold;
+  }
+  .chip-high {
+    @apply bg-orange-100 text-orange-700;
+  }
+  .chip-medium {
+    @apply bg-blue-100 text-blue-700;
+  }
+  .chip-low {
+    @apply bg-slate-100 text-slate-600;
+  }
+  .chip-green {
+    @apply bg-emerald-100 text-emerald-700;
+  }
+  .chip-red {
+    @apply bg-red-100 text-red-600;
+  }
+  .bottom-nav {
+    @apply fixed inset-x-0 bottom-0 z-20 border-t border-slate-200 bg-white/95 backdrop-blur;
+  }
+}

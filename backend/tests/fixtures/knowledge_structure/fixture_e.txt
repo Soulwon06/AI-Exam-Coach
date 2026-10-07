@@ -1,0 +1,13 @@
+Chapter 1 Foundations
+1.1 Topic A
+Knowledge Point Details
+ID
+E-TITLE
+结构化标题
+English Title
+Definition and rule sentence. This is evidence, not a title.
+The rule remains grounded in the source.
+1
+1.1
+YES
+来源

@@ -1,0 +1,13 @@
+Chapter 1 Foundations
+1.1 Topic A
+  ↳ Concept A
+Knowledge Point Details
+ID
+CONCEPT-A
+Concept A
+Concept A
+1
+1.1
+YES
+Definition excerpt for Concept A.
+来源
