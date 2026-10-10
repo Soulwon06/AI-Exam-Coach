@@ -22,6 +22,10 @@ backend/data/
 uploads/
 backups/
 
+# Public reproducible Demo snapshot
+!demo/
+!demo/aiexamcoach-demo.sqlite3
+
 # Node / Next.js
 node_modules/
 .next/

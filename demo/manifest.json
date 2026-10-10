@@ -1,0 +1,13 @@
+{
+  "format_version": 1,
+  "course_id": "2fac5adf-a99b-47f1-838d-08563331a5f1",
+  "username": "demo",
+  "provider_required": false,
+  "counts": {
+    "courses": 1,
+    "materials": 10,
+    "study_units": 379,
+    "questions": 179
+  },
+  "sha256": "3faab7ef91dfa97ab0df1e4f799d41b9b34c3f8b5ba89b514ccee8c14cf87117"
+}

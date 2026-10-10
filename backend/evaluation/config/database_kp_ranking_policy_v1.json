@@ -1,0 +1,122 @@
+{
+  "schema_version": "database-kp-ranking-policy-v1",
+  "version": "DATABASE_KP_RANKING_POLICY_V1",
+  "status": "FROZEN_POLICY_CONTRACT_NOT_PRODUCTION_INTEGRATION",
+  "ranking_membership": {
+    "view": "VIEW_C_ACTIONABLE_MIXED",
+    "count": 367,
+    "definition": "all learning leaves plus non-leaf KPs with direct REAL_EXAM occurrence"
+  },
+  "real_exam_active_gate": {
+    "enabled": true,
+    "active_condition": "question_occurrence_count > 0",
+    "zero_condition": "question_occurrence_count == 0",
+    "reason": "PRESERVE_TRUE_EXAM_FIRST_UNDER_FUTURE_SOURCE_OR_WEIGHT_CHANGES",
+    "is_additional_score": false
+  },
+  "formula": {
+    "name": "BALANCED_EXAM",
+    "coefficients": {
+      "exam_year_breadth": 0.55,
+      "occurrence_log_signal": 0.25,
+      "primary_log_signal": 0.1,
+      "cross_paper_same_year_bonus": 0.05,
+      "textbook_support_signal": 0.05
+    },
+    "weights_sum": 1.0,
+    "transforms": {
+      "exam_year_breadth": "year_coverage_count / 7",
+      "occurrence_log_signal": "log1p(question_occurrence_count) / log1p(MAX_QUESTION_OCCURRENCE_IN_VIEW)",
+      "primary_log_signal": "log1p(primary_question_occurrence_count) / log1p(MAX_PRIMARY_OCCURRENCE_IN_VIEW)",
+      "cross_paper_same_year_bonus": "max(0, paper_coverage_count - year_coverage_count)"
+    },
+    "maxima_recomputed_from_frozen_view": {
+      "MAX_QUESTION_OCCURRENCE_IN_VIEW": 21,
+      "MAX_PRIMARY_OCCURRENCE_IN_VIEW": 21
+    }
+  },
+  "textbook_semantics": {
+    "explanation_bound": 1.0,
+    "structure_only": 0.25,
+    "policy_status": "FROZEN_POLICY_V1_ASSUMPTION",
+    "origin": "D5_A_SIMULATION_SELECTED_AND_FROZEN",
+    "max_contribution": 0.05
+  },
+  "primary_secondary_semantics": {
+    "SECONDARY_POLICY": "INCLUDED_IN_TOTAL_OCCURRENCE_ONLY",
+    "PRIMARY_POLICY": "INCLUDED_IN_TOTAL_PLUS_PRIMARY_SIGNAL",
+    "hidden_secondary_discount": false
+  },
+  "tie_break": [
+    "ranking_score DESC",
+    "year_coverage_count DESC",
+    "question_occurrence_count DESC",
+    "primary_question_occurrence_count DESC",
+    "canonical_kp_id ASC"
+  ],
+  "DISPLAY_SCORE_USED_FOR_SORTING": false,
+  "entity_roles": {
+    "ACTIONABLE_LEAF": "learning leaf",
+    "EXAM_UMBRELLA_NON_LEAF": "non-leaf with direct REAL_EXAM evidence",
+    "umbrella_evidence_aggregation_mode": "DIRECT_ONLY"
+  },
+  "approved_source_signals": [
+    "REAL_EXAM",
+    "TEXTBOOK"
+  ],
+  "excluded_signals": [
+    "CLASS_NOTES",
+    "TEACHER_PPT",
+    "TEACHER_EMPHASIS",
+    "EXAM_SCOPE",
+    "HOMEWORK",
+    "LAB",
+    "SUPPLEMENTARY_REVIEW_QA"
+  ],
+  "explainability_contract": [
+    "canonical_kp_id",
+    "name_cn",
+    "name_en",
+    "ranking_entity_role",
+    "exam_evidence_tier",
+    "question_occurrence_count",
+    "primary_question_occurrence_count",
+    "secondary_question_occurrence_count",
+    "year_coverage_count",
+    "year_denominator",
+    "paper_coverage_count",
+    "paper_denominator",
+    "textbook_evidence_status",
+    "textbook_support_signal",
+    "ranking_score",
+    "display_priority_score",
+    "ranking_position",
+    "ranking_reason_codes"
+  ],
+  "display_score_semantics": {
+    "enabled": true,
+    "formula": "ranking_score * 100",
+    "decimals": 2,
+    "DISPLAY_SCORE_IS_RELATIVE_POLICY_SCORE_NOT_PROBABILITY": true
+  },
+  "priority_labels": {
+    "defined": false,
+    "calibration_required_before_labels": true
+  },
+  "production_integration": {
+    "production_scoring_modified": false,
+    "production_ranking_writes": 0,
+    "database_writes": 0,
+    "frontend_modified": false
+  },
+  "source_hashes": {
+    "backend/evaluation/datasets/database_kp_ranking_policy_simulation_v1.json": "e671b01a7944b6a6e215f535b0463107999ccc78679a6a122a4b1a9c28141e1d",
+    "backend/evaluation/reports/database_kp_ranking_policy_comparison_v1.json": "53de93feca88a9141d81f12f7e94f60318d49e216bf28b64e68101e0793dffe6",
+    "backend/evaluation/datasets/database_canonical_typed_source_evidence_overlay_v2_reviewed.json": "5a6b3548f8373b8e3c6012aaf7f73f826ee87c0580875b0bc800f968f9b4066a",
+    "backend/evaluation/datasets/database_real_exam_kp_frequency_evidence_v1.json": "6bc9c5eceddaf2b1c9d3f8d665a09b5a6592a80f4eca96dbf0c05c89ae3214e4",
+    "backend/evaluation/datasets/database_kp_ranking_input_preflight_v1.json": "5a7a11e94b478cfd83e19f665ff00c35f94630476baa0469373c00aa9f70cfca",
+    "backend/evaluation/datasets/database_canonical_knowledge_proposal.json": "c757e2cb262ac265d3f2872bd9f61d66e4d46a84932597f8c8fcee27f74a100e",
+    "backend/evaluation/datasets/database_canonical_content_evidence_shadow.json": "25c3f05e638e8d6796a1d8011823a349894638ce4ac91b2f2cb9d525d3043c2d",
+    "backend/app/services/scoring.py": "471c396e3040711c549183ba2d7969142531fc3e50072fb26511eebf5acd2619"
+  }
+}
